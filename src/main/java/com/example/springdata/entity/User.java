@@ -23,4 +23,12 @@ public class User {
     @Column(name="dogum tarixi")
     private LocalDate age;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
