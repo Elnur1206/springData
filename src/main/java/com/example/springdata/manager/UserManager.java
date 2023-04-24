@@ -15,15 +15,12 @@ public class UserManager implements UserService {
     private final UserRepository userRepository;
     @Override
     public List<User> getAll() {
-
         return userRepository.findAll();
     }
     @Override
     public User getById(int id) {
         return userRepository.findById(id).get();
-
     }
-
     @Override
     public User saveUser(User u) {
         return userRepository.save(u);
