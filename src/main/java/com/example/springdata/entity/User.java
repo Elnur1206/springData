@@ -29,8 +29,7 @@ public class User {
     @Column(name="dogum tarixi")
     private LocalDate age;
 
-    @OneToMany(mappedBy = "user")
-    List<Blog> blogs;
+
 
 
 }

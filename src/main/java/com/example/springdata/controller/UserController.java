@@ -1,5 +1,6 @@
 package com.example.springdata.controller;
 
+import com.example.springdata.DTO.UserDto;
 import com.example.springdata.entity.User;
 import com.example.springdata.manager.UserManager;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +16,11 @@ public class UserController {
         this.userManege = userManege;
     }
     @GetMapping
-    public List<User> getAll(){
+    public List<UserDto> getAll(){
         return userManege.getAll();
     }
     @GetMapping("/{id}")
-    public User getById(@PathVariable int id){
+    public UserDto getById(@PathVariable int id){
         return userManege.getById(id);
     }
     @PostMapping

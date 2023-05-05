@@ -1,6 +1,9 @@
 package com.example.springdata.manager;
 
+import com.example.springdata.DTO.UserDto;
+import com.example.springdata.DTO.UserDtoManager;
 import com.example.springdata.entity.User;
+import com.example.springdata.exception.UserNotFoundExceprion;
 import com.example.springdata.repository.UserRepository;
 import com.example.springdata.service.UserService;
 import lombok.AllArgsConstructor;
@@ -13,13 +16,17 @@ import java.util.List;
 public class UserManager implements UserService {
 
     private final UserRepository userRepository;
+    private final UserDtoManager userDtoManager;
     @Override
-    public List<User> getAll() {
-        return userRepository.findAll();
+    public List<UserDto> getAll() {
+        return userRepository.findAll().stream().
+                map(userDtoManager).toList();
     }
     @Override
-    public User getById(int id) {
-        return userRepository.findById(id).get();
+    public UserDto getById(int id) {
+        return userRepository.findById(id).
+                stream().map(userDtoManager).findFirst().
+                orElseThrow(()->new UserNotFoundExceprion("Istifadeci tapilmadi"));
     }
     @Override
     public User saveUser(User u) {
